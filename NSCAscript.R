@@ -2,6 +2,7 @@ library(readxl)
 BJ <- read_excel("BJ.xlsx")
 View(BJ)
 attach(BJ)
+library(dplyr)
 
 ##Regression model
 model <- lm(Accel ~ Distance, data = BJ)
