@@ -52,3 +52,16 @@ ggplot(BOMBT, aes(y = Accel30, x = PF)) +
   stat_regline_equation(label.x = 2.3, label.y = 5.5,
         aes(label =  paste(..eq.label.., ..adj.rr.label.., sep = "~~~~")))
 ggsave("BOMBT_PeakForce.png")
+
+##Subject descriptives
+library(psych)
+library(dplyr)
+
+## Change Height to meters / 100 and then obtain BMI (Kg/m2)
+BJ <- mutate(BJ, Height = Height/100) %>% 
+  mutate(BJ, BMI = Weight / (Height^2))
+
+##describe all subjects mean and sd
+BJ %>% describe()
+##describe subjects by sex
+BJ %>% describeBy(Gender)
